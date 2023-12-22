@@ -1,10 +1,17 @@
-from django import forms
-from .models import Farmer
+# custom_users/forms.py
 
-class FarmerForm(forms.ModelForm):
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from .models import UserFarmer, UserDriver
+
+class UserFarmerRegistrationForm(UserCreationForm):
+    # add custom fields for farmer registration
     class Meta:
-        model = Farmer
-        fields = ['fullname', 'address', 'number', 'email', 'username', 'password']
-        widgets = {
-            'password': forms.PasswordInput(),
-        }
+        model = UserFarmer
+        fields = ['username', 'email', 'password1', 'password2']
+
+class UserDriverRegistrationForm(UserCreationForm):
+    # add custom fields for driver registration
+    class Meta:
+        model = UserDriver
+        fields = ['username', 'email', 'password1', 'password2']

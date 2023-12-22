@@ -25,23 +25,29 @@ SECRET_KEY = "django-insecure-h_*iwklwm#g2!lzh(d5sp1zafyq8f(j5y^i@i)l5wz5+&4*+q2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
     "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'django.contrib.contenttypes',
+    'django.contrib.auth',
+    # 'crispy_forms',
+    # 'crispy_bootstrap5',
+    # 'django_bootstrap5',
     'farmer',
     'driver',
     'booking',
     'accounts',
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -53,6 +59,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'django.contrib.messages.middleware.MessageMiddleware',
     
+    
 ]
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
@@ -63,7 +70,7 @@ ROOT_URLCONF = "Reservation.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR,'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -130,3 +137,26 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_REDIRECT_URL = 'home_farmer'
+
+
+
+LOGOUT_REDIRECT_URL = "home"
+# ... (existing code)
+
+# settings.py
+
+#AUTH_USER_MODELS = None
+
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = (BASE_DIR, 'media')
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.backends.UserFarmerBackend',
+    'accounts.backends.UserDriverBackend',
+]
+

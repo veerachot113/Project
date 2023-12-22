@@ -1,15 +1,15 @@
+<!-- ในไฟล์ signup.html -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login & Registration Form</title>
-    <!---Custom CSS File--->
+    <title>Register</title>
     <style>
         /* ในไฟล์ signup.css */
         /* Import Google font - Poppins */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
 
         * {
             margin: 0;
@@ -29,7 +29,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            max-width: 430px;
+            max-width: 500px;
+            /* ปรับความกว้างของ container เพื่อทำให้เล็กลง */
             width: 100%;
             background: #fff;
             border-radius: 7px;
@@ -48,11 +49,14 @@
         }
 
         .form input {
-            height: 60px;
+            height: 45px;
+            /* ปรับความสูงของ input เพื่อทำให้เล็กลง */
             width: 100%;
-            padding: 0 15px;
-            font-size: 17px;
-            margin-bottom: 1.3rem;
+            padding: 0 10px;
+            /* ปรับ padding เพื่อทำให้เล็กลง */
+            font-size: 15px;
+            /* ปรับขนาดตัวอักษรเพื่อทำให้เล็กลง */
+            margin-bottom: 1rem;
             border: 1px solid #ddd;
             border-radius: 6px;
             outline: none;
@@ -114,21 +118,40 @@
 </head>
 
 <body>
+    
     <div class="container">
-        <div class="login form">
-            <header>เข้าสู่ระบบ</header>
-            <form method="post" action="{% url 'login' %}">
+        <div class="form">
+            <header>ลงทะเบียน</header>
+            <form method="post" action="{% url 'registerfarmer' %}">
                 {% csrf_token %}
-                <label for="fullname">Usename:</label>
-                <input type="text" name="usename" placeholder="usename" required>
-                <label for="password">รหัสผ่าน :</label>
-                <input type="password" name="password" placeholder="รหัสผ่าน" required>
-                <a href="#">ลืมรหัสผ่าน?</a>
-                <input type="submit" class="button" value="Login">
+                
+                <label for="fullname">ชื่อ-สกุล :</label>
+                <input type="text" id="fullname" name="fullname" placeholder="ชื่อ-สกุล" required>
+
+            
+                <label for="address">ที่อยู่ :</label>
+                <input type="text" id="address" name="address" placeholder="ที่อยู่" required>
+            
+                <label for="phone">เบอร์ :</label>
+                <input type="text" id="phone" name="phone" placeholder="เบอร์" required>
+            
+                <label for="email">E-mail :</label>
+                <input type="email" id="email" name="email" placeholder="E-mail" required>
+            
+                <label for="username">Usename :</label>
+                <input type="text" id="username" name="username" placeholder="username" required>
+            
+                <label for="password1">Password :</label>
+                <input type="password" id="password1" name="password1" placeholder="รหัสผ่าน" required>
+            
+                <label for="password2">Confirm Password :</label>
+                <input type="password" id="password2" name="password2" placeholder="ยืนยันรหัสผ่าน" required>
+            
+                <input type="submit" class="button" value="ลงทะเบียน">
             </form>
             <div class="signup">
-                <span class="signup">ยังไม่มีบัญชีผู้ใช้
-                    <a href="{% url 'chooserole' %}">ลงทะเบียน</a>
+                <span class="signup">มีบัญชีผู้ใช้อยู่แล้ว?
+                    <a href="{% url 'login' %}">เข้าสู่ระบบ</a>
                 </span>
             </div>
         </div>

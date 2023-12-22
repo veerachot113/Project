@@ -1,11 +1,11 @@
-<!-- ในไฟล์ signup.html -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
+    <title>Login & Registration Form</title>
+    <!---Custom CSS File--->
     <style>
         /* ในไฟล์ signup.css */
         /* Import Google font - Poppins */
@@ -22,13 +22,13 @@
             min-height: 100vh;
             width: 100%;
             background: #009579;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             max-width: 430px;
             width: 100%;
             background: #fff;
@@ -37,6 +37,9 @@
         }
 
         .container .form {
+            padding: 2rem;
+        }
+        .form {
             padding: 2rem;
         }
 
@@ -115,37 +118,23 @@
 
 <body>
     <div class="container">
-        <div class="form">
-            <header>ลงทะเบียน</header>
-            <form method="post" action="{% url 'signup' %}">
+        <div class="login form">
+            <header>เข้าสู่ระบบชาวนา</header>
+            <form action="{% url 'login' %}" method="post">
                 {% csrf_token %}
-                <label for="fullname">ชื่อ-สกุล :</label>
-                <input type="text" id="fullname" name="fullname" placeholder="ชื่อ-สกุล" required>
-
-                <label for="address">ที่อยู่ :</label>
-                <input type="text" id="address" name="address" placeholder="ที่อยู่" required>
-
-                <label for="phone">เบอร์ :</label>
-                <input type="text" id="phone" name="phone" placeholder="เบอร์" required>
-
-                <label for="email">E-mail :</label>
-                <input type="email" id="email" name="email" placeholder="E-mail" required>
-
-                <label for="password1">Password :</label>
-                <input type="password" id="password1" name="password1" placeholder="รหัสผ่าน" required>
-
-                <label for="password2">Confirm Password :</label>
-                <input type="password" id="password2" name="password2" placeholder="ยืนยันรหัสผ่าน" required>
-
-                <input type="submit" class="button" value="ลงทะเบียน">
+                <label for="username">Username:</label>
+                <input type="text" name="username" placeholder="username" required>
+                <label for="password">รหัสผ่าน :</label>
+                <input type="password" name="password" placeholder="password" required>
+                <a href="#">ลืมรหัสผ่าน?</a>
+                <input type="submit" class="button" value="Login">
             </form>
             <div class="signup">
-                <span class="signup">มีบัญชีผู้ใช้อยู่แล้ว?
-                    <a href="{% url 'login' %}">ลงทะเบียน</a>
+                <span class="signup">ยังไม่มีบัญชีผู้ใช้
+                    <a href="{% url 'chooserole' %}">ลงทะเบียน</a>
                 </span>
             </div>
         </div>
     </div>
 </body>
-
 </html>
