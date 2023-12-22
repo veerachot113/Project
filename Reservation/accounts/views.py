@@ -6,40 +6,46 @@ from django.contrib.auth import login
 from .forms import UserFarmerRegistrationForm, UserDriverRegistrationForm
 
 
+# accounts/views.py
 
 
-
-
-# views.py
-from .forms import UserFarmerRegistrationForm
-
-from django.contrib.auth import login
 
 def register_farmer(request):
     if request.method == 'POST':
         form = UserFarmerRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user, backend='accounts.backends.UserFarmerBackend')  # Provide backend argument
+            
+            # Add the user to the 'driver' group
+            farmer_group = Group.objects.get(name='farmer')
+            user.groups.add(farmer_group)
+            
+            login(request, user, backend='accounts.backends.UserFarmerBackend')
             return redirect('home_farmer')
     else:
         form = UserFarmerRegistrationForm()
 
     return render(request, 'templates/farmer/registerfarmer.html', {'form': form})
 
-
-
 def register_driver(request):
     if request.method == 'POST':
         form = UserDriverRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user, backend='accounts.backends.UserDriverBackend')  # Provide backend argument
+            
+            # Add the user to the 'driver' group
+            driver_group = Group.objects.get(name='driver')
+            user.groups.add(driver_group)
+            
+            login(request, user, backend='accounts.backends.UserDriverBackend')
             return redirect('home_driver')
     else:
         form = UserDriverRegistrationForm()
 
     return render(request, 'templates/driver/registerdriver.html', {'form': form})
+
+
+
 
 
 
@@ -91,6 +97,12 @@ from django.contrib import messages
 #     return render(request, 'templates/accounts/registration/login.html', {'form': form})
 
 
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.models import Group  # Add this import
+
 def user_login(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
@@ -100,7 +112,12 @@ def user_login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.success(request, f"Welcome back, {username}!")
+
+                # Additional logging for debugging
+                print(f"User {username} logged in with groups: {[group.name for group in user.groups.all()]}")
+
+                # Check all group names
+                print(f"All group names: {[group.name for group in Group.objects.all()]}")
 
                 # Check the user's role and redirect accordingly
                 if 'farmer' in [group.name for group in user.groups.all()]:
@@ -116,6 +133,7 @@ def user_login(request):
         form = AuthenticationForm()
     
     return render(request, 'templates/accounts/registration/login.html', {'form': form})
+
 
 
 # def register(request):

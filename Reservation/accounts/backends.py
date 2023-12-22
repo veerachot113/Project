@@ -1,4 +1,4 @@
-# custom_users/backends.py
+# accounts/backends.py
 
 from django.contrib.auth.backends import ModelBackend
 from .models import UserFarmer
@@ -22,7 +22,7 @@ class UserFarmerBackend(ModelBackend):
 
 
 
-# custom_users/backends.py
+# accounts/backends.py
 
 from django.contrib.auth.backends import ModelBackend
 from .models import UserFarmer, UserDriver

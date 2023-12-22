@@ -152,7 +152,8 @@ LOGOUT_REDIRECT_URL = "home"
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = (BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
+
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',

@@ -9,8 +9,10 @@ class UserFarmer(AbstractUser):
     name = models.CharField(max_length=100, default='')
     username = models.CharField(max_length=30, unique=True)  # Add username field
     address = models.CharField(max_length=255, default='')   # Add address field
+
     def __str__(self):
         return f'UserFarmer: {self.name}'
+
 class UserDriver(AbstractUser):
     # add custom fields for driver
     groups = models.ManyToManyField(Group, verbose_name="Groups", blank=True, related_name='driver_groups')
@@ -18,5 +20,6 @@ class UserDriver(AbstractUser):
     name = models.CharField(max_length=100, default='')
     username = models.CharField(max_length=30, unique=True)  # Add username field
     address = models.CharField(max_length=255, default='')   # Add address field
+
     def __str__(self):
-        return f'UserFarmer: {self.name}'
+        return f'UserDriver: {self.name}'

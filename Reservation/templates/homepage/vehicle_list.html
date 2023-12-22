@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>car</title>
+</head>
+<body>
+<!-- driver/templates/driver/vehicle_list.html -->
+
+  <h2>ข้อมูล</h2>
+  {% for vehicle in vehicles %}
+    <div>
+      <img src="{{ vehicle.image.url }}" alt="{{ vehicle.make }} {{ vehicle.model }}">
+      <h3>{{ vehicle.year }} {{ vehicle.name }} {{ vehicle.model }}</h3>
+      <p>Driver: {{ vehicle.driver.username }}</p>
+    </div>
+  {% endfor %}
+
+
+
+</body>
+</html>
