@@ -20,8 +20,7 @@ def register_farmer(request):
             farmer_group = Group.objects.get(name='farmer')
             user.groups.add(farmer_group)
             
-            login(request, user, backend='accounts.backends.UserFarmerBackend')
-            return redirect('home_farmer')
+            return redirect('login')
     else:
         form = UserFarmerRegistrationForm()
 
@@ -36,9 +35,8 @@ def register_driver(request):
             # Add the user to the 'driver' group
             driver_group = Group.objects.get(name='driver')
             user.groups.add(driver_group)
-            
-            login(request, user, backend='accounts.backends.UserDriverBackend')
-            return redirect('home_driver')
+
+            return redirect('login')
     else:
         form = UserDriverRegistrationForm()
 
