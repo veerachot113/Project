@@ -32,6 +32,9 @@
             /* Navbar background color */
         }
 
+
+
+
         .navbar-brand,
         .navbar-nav .nav-link {
             color: #ffffff !important;
@@ -187,6 +190,19 @@
             border-color: #d23e20;
         }
 
+        .navbar-light .navbar-nav .nav-link {
+            color: #FFFFFF;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        a.nav-link:hover {
+            background: #616161;
+            height: 100%;
+            color: #ffffff;
+
+        }
+
 
 
         /* Responsive */
@@ -194,6 +210,12 @@
         @media (min-width:768px) {
             .content {
                 width: auto;
+            }
+
+
+            .navbar-nav .dropdown-menu {
+                left: auto;
+                right: 0;
             }
         }
     </style>
@@ -300,50 +322,34 @@
         <div class="main">
             <nav class="navbar navbar-expand px-3 border-bottom">
                 <!-- Button for sidebar toggle -->
+                {% if user.is_authenticated %}
                 <button class="btn" type="button" data-bs-theme="dark">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                {% endif %}
                 <!-- Navbar Items -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        {% if user.is_authenticated %}
                         <!-- If the user is logged in, show profile picture button and dropdown -->
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="profileDropdown"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {% if user.profile_picture %}
-                                    <img src="{{ user.profile_picture.url }}" alt="Profile Picture" width="30"
-                                        height="30" class="rounded-circle">
-                                    {% else %}
-                                    <i class="fas fa-user-circle fa-lg"></i> <!-- Default user icon -->
-                                    {% endif %}
-                                    {{ user.username }} <!-- Display the username -->
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-                                </ul>
-
-                            </div>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="fa-solid fa-user"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% if user.is_authenticated %}
+                                <li><a class="dropdown-item" href="/dashboard">แผงควบคุม</a></li>
+                                <li><a class="dropdown-item" href="/dashboard/orders">ดูคำสั่งซื้อ</a></li>
+                                <li><a class="dropdown-item" href="/dashboard/profile_edit">แก้ไขโปรไฟล์</a></li>
+                                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                                {% else %}
+                                <li><a class="dropdown-item" href="{% url 'login' %}">เข้าสู่ระบบ</a></li>
+                                <li><a class="dropdown-item" href="{% url 'chooserole' %}">สร้างบัญชี</a></li>
+                                {% endif %}
+                            </ul>
                         </li>
-                        {% else %}
-                        <!-- If not logged in, show login and register buttons -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">เข้าสู่ระบบ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'chooserole' %}">สร้างบัญชี</a>
-                        </li>
-                        {% endif %}
                     </ul>
                 </div>
-
             </nav>
             <main class="content px-3 py-2">
                 <div class="container-fluid">

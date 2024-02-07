@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
+# MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,10 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'django.contrib.contenttypes',
     'django.contrib.auth',
-    # 'crispy_forms',
-    'crispy_bootstrap5',
-    'django_bootstrap5',
-    'bootstrap5',
+    "crispy_forms",
+    "crispy_bootstrap5",
     'farmer',
     'driver',
     'booking',
@@ -132,7 +131,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "static/"
+STATICFILES_DIRS = [
+ os.path.join(BASE_DIR, 'static')
+ ]
+STATIC_URL = "/static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
