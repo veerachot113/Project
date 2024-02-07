@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <title>ชาวนา</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,9 +32,6 @@
             background-color: #122335;
             /* Navbar background color */
         }
-
-
-
 
         .navbar-brand,
         .navbar-nav .nav-link {
@@ -78,14 +76,6 @@
             margin-left: -264px;
         }
 
-        .main {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            width: 100%;
-            overflow: hidden;
-            transition: all 0.35s ease-in-out;
-        }
 
         .sidebar-logo {
             padding: 1.15rem 1.5rem;
@@ -133,15 +123,53 @@
             transition: all .2s ease-out;
         }
 
+        .main {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: 100%;
+            transition: all 0.35s ease-in-out;
+        }
+
         .content {
             flex: 1;
             max-width: 100vw;
             width: 100vw;
+            color: initial;
         }
 
-        .container-fluid {
-            background-color: #f1f1f1;
-            padding-top: 20px;
+        .container-fluid.bg-light {
+            width: 100%;
+            height: 62px;
+            flex-shrink: 0;
+            border: 1px solid #000;
+            background: #D9D9D9;
+            mix-blend-mode: hard-light;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+            display: flex;
+            justify-content: flex-start;
+            /* Align content to the start (left) */
+            align-items: center;
+            height: 62px;
+            /* Adjust the height as needed */
+            background-color: #D9D9D9;
+            /* Ensure background color is set */
+            padding-left: 20px;
+            /* Add some left padding for space */
+            align-items: center;
+            /* Adjust the height as needed */
+
+            /* Adjust the height as needed */
+            background-color: #D9D9D9;
+            /* Ensure background color is set */
+        }
+
+        .container-fluid.bg-light h3 {
+            color: black;
+            margin: 0;
+            padding-left: 20px;
+            /* Remove default margin */
         }
 
         .product-container {
@@ -160,12 +188,14 @@
 
         .product-details {
             padding: 20px;
+
         }
 
         .product-title {
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 10px;
+            /* Set your desired text color here */
         }
 
         .product-description {
@@ -190,18 +220,96 @@
             border-color: #d23e20;
         }
 
-        .navbar-light .navbar-nav .nav-link {
-            color: #FFFFFF;
-            font-size: 13px;
-            letter-spacing: 1px;
+        .h3 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        a.nav-link:hover {
-            background: #616161;
-            height: 100%;
-            color: #ffffff;
+        .logo img {
+      max-height: 26px;
+      margin-right: 6px;
+    }
 
-        }
+    .logo span {
+      font-size: 26px;
+      font-weight: 700;
+      color: #012970;
+      font-family: "Nunito", sans-serif;
+    }
+
+    /*--------------------------------------------------------------
+# Header Nav
+--------------------------------------------------------------*/
+    .header-nav ul {
+      list-style: none;
+    }
+
+    .header-nav>ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    .header-nav .nav-icon {
+      font-size: 22px;
+      color: #012970;
+      margin-right: 25px;
+      position: relative;
+    }
+
+    .header-nav .nav-profile {
+      color: #012970;
+    }
+
+    .header-nav .nav-profile img {
+      max-height: 36px;
+    }
+
+    .header-nav .nav-profile span {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .header-nav .badge-number {
+      position: absolute;
+      inset: -2px -5px auto auto;
+      font-weight: normal;
+      font-size: 12px;
+      padding: 3px 6px;
+    }
+
+    .header-nav .profile {
+      min-width: 240px;
+      padding-bottom: 0;
+      top: 8px !important;
+    }
+
+    .header-nav .profile .dropdown-header h6 {
+      font-size: 18px;
+      margin-bottom: 0;
+      font-weight: 600;
+      color: #444444;
+    }
+
+    .header-nav .profile .dropdown-header span {
+      font-size: 14px;
+    }
+
+    .header-nav .profile .dropdown-item {
+      font-size: 14px;
+      padding: 10px 15px;
+      transition: 0.3s;
+    }
+
+    .header-nav .profile .dropdown-item i {
+      margin-right: 10px;
+      font-size: 18px;
+      line-height: 0;
+    }
+
+    .header-nav .profile .dropdown-item:hover {
+      background-color: #f6f9ff;
+    }
 
 
 
@@ -211,20 +319,16 @@
             .content {
                 width: auto;
             }
-
-
-            .navbar-nav .dropdown-menu {
-                left: auto;
-                right: 0;
-            }
         }
     </style>
+
     <title>Sidebar With Bootstrap</title>
 </head>
 
 <body>
     <div class="wrapper">
         <!-- Sidebar -->
+        {% if user.is_authenticated %}
         <aside id="sidebar">
             <div class="h-100">
                 <div class="sidebar-logo">
@@ -318,6 +422,7 @@
                 </ul>
             </div>
         </aside>
+        {% endif %}
         <!-- Main Component -->
         <div class="main">
             <nav class="navbar navbar-expand px-3 border-bottom">
@@ -327,80 +432,85 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 {% endif %}
+
                 <!-- Navbar Items -->
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <!-- If the user is logged in, show profile picture button and dropdown -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <i class="fa-solid fa-user"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                {% if user.is_authenticated %}
-                                <li><a class="dropdown-item" href="/dashboard">แผงควบคุม</a></li>
-                                <li><a class="dropdown-item" href="/dashboard/orders">ดูคำสั่งซื้อ</a></li>
-                                <li><a class="dropdown-item" href="/dashboard/profile_edit">แก้ไขโปรไฟล์</a></li>
-                                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-                                {% else %}
-                                <li><a class="dropdown-item" href="{% url 'login' %}">เข้าสู่ระบบ</a></li>
-                                <li><a class="dropdown-item" href="{% url 'chooserole' %}">สร้างบัญชี</a></li>
-                                {% endif %}
-                            </ul>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="d-flex align-items-center">
+                                
+                                <div class="dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-user"></i> 
+                                    
+                                    <span>{{ user.username }}</span>
+                                </a>
+                                    <!-- <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">  
+                                        <span class="d-none d-md-block dropdown-toggle ps-2">{{ user.username }}</span>
+                                    </a> -->
+                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                                        <li class="dropdown-header">
+                                            <h6>{{ user.username }}</h6>
+                                            <span>Web Designer</span>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                
+                                        <li>
+                                            <a class="dropdown-item d-flex align-items-center" href="">
+                                                <i class="bi bi-person"></i>
+                                                <span>My Profile</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                
+                                        <li>
+                                            <a class="dropdown-item d-flex align-items-center" href="">
+                                                <i class="bi bi-gear"></i>
+                                                <span>Account Settings</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                
+                                        <li>
+                                            <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}">
+                                                <i class="bi bi-box-arrow-right"></i>
+                                                <span>Sign Out</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                
+                        {% else %}
+                            <!-- If not logged in, show login and register buttons -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">เข้าสู่ระบบ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'chooserole' %}">สร้างบัญชี</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
+
+
+
             </nav>
-            <main class="content px-3 py-2">
-                <div class="container-fluid">
-                    <div class="mb-3">
-                        <h3>Product Catalog</h3>
-                    </div>
+            <!-- Middle Banner - Combine Harvester -->
+            <div class="page-banner text-center py-4">
+                <h2 class="text-white">รชาวนา</h2>
+                <img src="https://raw.githubusercontent.com/veerachot113/image/main/LO_BANNER-NEW-WEB-CH-1900x567-px.webp"
+                    alt="Combine Harvester Image" width="573" height="191" class="img-fluid mb-3">
 
-                    <!-- Product 1 -->
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="product-container">
-                                <img src="https://placekitten.com/300/200" alt="Product Image" class="product-image">
-                                <div class="product-details">
-                                    <div class="product-title">Product 1</div>
-                                    <div class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit.</div>
-                                    <div class="product-price">$99.99</div>
-                                    <button class="btn btn-primary">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
+            </div>
 
-                        <div class="col-md-4">
-                            <div class="product-container">
-                                <img src="https://placekitten.com/300/200" alt="Product Image" class="product-image">
-                                <div class="product-details">
-                                    <div class="product-title">Product 1</div>
-                                    <div class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit.</div>
-                                    <div class="product-price">$99.99</div>
-                                    <button class="btn btn-primary">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="product-container">
-                                <img src="https://placekitten.com/300/200" alt="Product Image" class="product-image">
-                                <div class="product-details">
-                                    <div class="product-title">Product 1</div>
-                                    <div class="product-description">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                        elit.</div>
-                                    <div class="product-price">$99.99</div>
-                                    <button class="btn btn-primary">Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Add more product entries as needed... -->
-                    </div>
-                </div>
-            </main>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
@@ -413,5 +523,7 @@
         });
     </script>
 </body>
+
+
 
 </html>

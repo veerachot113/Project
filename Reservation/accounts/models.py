@@ -1,6 +1,20 @@
 # accounts/models.py
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
+from django.db import migrations
+
+def create_groups(apps, schema_editor):
+    Group = apps.get_model('auth', 'Group')
+    Group.objects.get_or_create(name='farmer')
+    Group.objects.get_or_create(name='driver')
+
+class Migration(migrations.Migration):
+    dependencies = [
+        ('accounts', 'previous_migration'),
+    ]
+    operations = [
+        migrations.RunPython(create_groups),
+    ]
 
 class UserFarmer(AbstractUser):
     # add custom fields for farmer
