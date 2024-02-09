@@ -38,8 +38,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'django.contrib.contenttypes',
     'django.contrib.auth',
-    "crispy_forms",
-    "crispy_bootstrap5",
     'farmer',
     'driver',
     'booking',

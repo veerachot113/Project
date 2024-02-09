@@ -115,9 +115,16 @@
             text-decoration: underline;
         }
     </style>
+    
 </head>
 
 <body>
+    <!-- {% if success %}
+    <p style="color: green;">สมัครสมาชิกสำเร็จ</p>
+{% endif %}
+{% if error %}
+    <p style="color: red;">สมัครสมาชิกไม่สำเร็จ</p>
+{% endif %} -->
     
     <div class="container">
         <div class="form">
@@ -125,10 +132,9 @@
             <form method="post" action="{% url 'registerfarmer' %}">
                 {% csrf_token %}
                 
-                <label for="fullname">ชื่อ-สกุล :</label>
-                <input type="text" id="fullname" name="fullname" placeholder="ชื่อ-สกุล" required>
+                <label for="name">ชื่อ-สกุล :</label>
+                <input type="text" id="name" name="name" placeholder="ชื่อ-สกุล" required>
 
-            
                 <label for="address">ที่อยู่ :</label>
                 <input type="text" id="address" name="address" placeholder="ที่อยู่" required>
             

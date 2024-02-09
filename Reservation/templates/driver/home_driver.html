@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <title>driver/title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -436,17 +437,18 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         {% if user.is_authenticated %}
-                            <!-- If the user is logged in, show profile picture button and dropdown -->
                             <li class="d-flex align-items-center">
+                                
                                 <div class="dropdown">
-                                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                                        {% if user.profile_picture %}
-                                            <img src="{{ user.profile_picture.url }}" alt="Profile" class="rounded-circle">
-                                        {% else %}
-                                            <img src="assets/img/default-profile-img.jpg" alt="Profile" class="rounded-circle">
-                                        {% endif %}
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa-solid fa-user"></i> 
+                                    
+                                    <span>{{ user.username }}</span>
+                                </a>
+                                    <!-- <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">  
                                         <span class="d-none d-md-block dropdown-toggle ps-2">{{ user.username }}</span>
-                                    </a><!-- End Profile Image Icon -->
+                                    </a> -->
                                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                                         <li class="dropdown-header">
                                             <h6>{{ user.username }}</h6>
@@ -467,7 +469,7 @@
                                         </li>
                 
                                         <li>
-                                            <a class="dropdown-item d-flex align-items-center" href="">
+                                            <a class="dropdown-item d-flex align-items-center" href="{% url 'profile_update' %}">
                                                 <i class="bi bi-gear"></i>
                                                 <span>Account Settings</span>
                                             </a>
@@ -503,7 +505,7 @@
             </nav>
             <!-- Middle Banner - Combine Harvester -->
             <div class="page-banner text-center py-4">
-                <h2 class="text-white">รถเกี่ยวนวดข้าว</h2>
+                <h2 class="text-white">รชาวนา</h2>
                 <img src="https://raw.githubusercontent.com/veerachot113/image/main/LO_BANNER-NEW-WEB-CH-1900x567-px.webp"
                     alt="Combine Harvester Image" width="573" height="191" class="img-fluid mb-3">
 
