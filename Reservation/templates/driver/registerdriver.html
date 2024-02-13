@@ -115,19 +115,20 @@
             text-decoration: underline;
         }
     </style>
+    
 </head>
 
 <body>
+
     <div class="container">
         <div class="form">
             <header>ลงทะเบียน</header>
             <form method="post" action="{% url 'registerdriver' %}">
                 {% csrf_token %}
                 
-                <label for="fullname">ชื่อ-สกุล :</label>
-                <input type="text" id="fullname" name="fullname" placeholder="ชื่อ-สกุล" required>
+                <label for="name">ชื่อ-สกุล :</label>
+                <input type="text" id="name" name="name" placeholder="ชื่อ-สกุล" required>
 
-            
                 <label for="address">ที่อยู่ :</label>
                 <input type="text" id="address" name="address" placeholder="ที่อยู่" required>
             

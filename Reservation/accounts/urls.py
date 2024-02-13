@@ -1,7 +1,7 @@
 # urls.py
 from django.urls import path
 from .views import *
-
+from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView
 urlpatterns = [
     path('', home, name='home'),
     path('home_farmer/', home_farmer, name='home_farmer'),# Provide a unique path for the farmer home
@@ -12,5 +12,6 @@ urlpatterns = [
     #path('register/', register, name='register'),
     path('registerdriver/', register_driver, name='registerdriver'),
     path('useregister/', useregister, name='chooserole'),
-    
+    path('profile/update/', profile_update, name='profile_update'),
+    # path('change_password/',change_password, name='change_password')
 ]

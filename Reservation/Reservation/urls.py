@@ -26,7 +26,7 @@ urlpatterns = [
     # path('', include("django.contrib.auth.urls")), 
     
     # path('',include('booking.urls')),
-    # path('',include('farmer.urls')),
+    # path('booking',include('booking.urls')),
     path('driver',include('driver.urls')),
 ]
 if settings.DEBUG:

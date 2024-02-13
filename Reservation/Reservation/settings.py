@@ -1,3 +1,4 @@
+#setting
 """
 Django settings for Reservation project.
 
@@ -42,6 +43,8 @@ INSTALLED_APPS = [
     'driver',
     'booking',
     'accounts',
+    'vehicles',
+
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -68,7 +71,7 @@ ROOT_URLCONF = "Reservation.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR,'templates'],
+        'DIRS': ['templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
