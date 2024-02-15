@@ -1,6 +1,8 @@
 from django.urls import path,include
 from .views import *
-from django.contrib.auth.views import LogoutView
 urlpatterns = [
+    path('booking/<int:id>/',booking, name='booking'),
+    path('showbooking/',showbooking, name='showbooking'),
+
  
 ]

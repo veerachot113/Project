@@ -1,9 +1,9 @@
 # urls.py
 from django.urls import path
 from .views import *
-from django.contrib.auth.views import PasswordResetView, PasswordResetDoneView
+# from driver .views import*
 urlpatterns = [
-    path('', home, name='home'),
+    path('', home_accounts, name='home'),
     path('home_farmer/', home_farmer, name='home_farmer'),# Provide a unique path for the farmer home
     path('home_driver/', home_driver, name='home_driver'),  # Provide a unique path for the driver home
     path('logout/', custom_logout, name='logout'),
@@ -13,5 +13,8 @@ urlpatterns = [
     path('registerdriver/', register_driver, name='registerdriver'),
     path('useregister/', useregister, name='chooserole'),
     path('profile/update/', profile_update, name='profile_update'),
+  
+
     # path('change_password/',change_password, name='change_password')
+    
 ]

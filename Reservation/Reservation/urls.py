@@ -28,6 +28,6 @@ urlpatterns = [
     # path('',include('booking.urls')),
     # path('booking',include('booking.urls')),
     path('driver',include('driver.urls')),
-]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('vehicle',include('vehicles.urls')),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

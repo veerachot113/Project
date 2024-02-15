@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Car List</title>
+</head>
+<body>
+   <main class="content px-3 py-2">
+       <div class="mt-4 box-list">
+           <div class="box-grid grid-3">
+               {% for car in cars %}
+                   <div class="row">
+                       <div class="col-md-4">
+                           <div class="product-container">
+                               <img src="{{ car.image.url }}" alt="Product Image" class="product-image">
+                               <div class="product-details">
+                                   <div class="product-title">{{ car.model }}</div>
+                                   <div class="product-description">{{ car.description }}</div>
+                                   <div class="product-price">{{ car.price }}</div>
+                                   <a href="{% url 'add_to_cart' car.id %}" class="btn btn-primary">Add to Cart</a>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               {% endfor %}
+           </div>
+       </div>
+   </main>
+</body>
+</html>

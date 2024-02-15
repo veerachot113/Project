@@ -27,8 +27,6 @@ class UserFarmer(AbstractUser):
     email = models.EmailField(max_length=255, unique=True)  # Keep email field only
     # เอา Username และ Password มาจาก AbstractUser อยู่แล้ว
 
-    def __str__(self):
-        return f'UserFarmer: {self.name}'
 
 class UserDriver(AbstractUser):
     # add custom fields for driver
@@ -40,5 +38,4 @@ class UserDriver(AbstractUser):
     email = models.EmailField(max_length=255, unique=True)  # Keep email field only
     # เอา Username และ Password มาจาก AbstractUser อยู่แล้ว
 
-    def __str__(self):
-        return f'UserDriver: {self.name}'
+

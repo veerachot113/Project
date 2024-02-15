@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>car</title>
+</head>
+<body>
+<!-- driver/templates/driver/vehicle_list.html -->
+
+
+  <div style="margin-top: 2%; margin-left: 6%">
+    <div class="row">
+      {% for vehicle in vehicles %}
+      <div class="card text-black border-light mb-5" style="max-width: 18rem; margin-right: 2%">
+        <div class="card-body">
+          <a href="#">
+            <img src="{{ vehicle.image.url }}" alt="{{ vehicle.model }}{{ vehicle.name }} {{ vehicle.province }}" style="height: 200px; width: 200px">
+          <hr>
+          <h5 class="text-left">{{ vehicle.model }}</h5>
+          <h5 class="text-left">{{ vehicle.name }}</h5>
+          <p class="card-text">{{ vehicle.price }}</p>
+          <p class="card-text">{{ vehicle.province }}</p>
+          <p>Driver: {{ vehicle.driver.username }}</p>
+          <p><a href="#" class="btn btn-dark btn-sm">View</a></p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+</body>
+</html>

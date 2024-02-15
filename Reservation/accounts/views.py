@@ -8,26 +8,30 @@ from .forms import *
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import Group  # Add this import
 from django.contrib.auth.decorators import login_required
-
+# from vehicles.views import home as vehicle_home
+from vehicles.models import Vehicle
 @login_required
 def custom_logout(request):
     logout(request)
     return redirect('home')  
-# def home(request):
-#     return render(request, 'templates/components/base.html')
 
-def home(request):
-    return render(request, 'accounts/home.html')
+def home_accounts(request):
+    vehicles = Vehicle.objects.all()
+    return render(request, 'home.html', {'vehicles': vehicles})
+
 @login_required
 def home_farmer(request):
-    return render(request,'farmer/home_farmer.html')
+    vehicles = Vehicle.objects.all()
+    return render(request,'farmer/home_farmer.html',{'vehicles': vehicles})
+
 @login_required
 def home_driver(request):
-    return render(request,'driver/home_driver.html')
+    vehicles = Vehicle.objects.all()
+    return render(request, 'driver/home_driver.html', {'vehicles': vehicles})
 
 
 def useregister(request):
-     return render(request,'accounts/chooserole.html') 
+     return render(request,'chooserole.html') 
 
 
 def register_farmer(request):
@@ -84,7 +88,7 @@ def user_login(request):
                 elif 'driver' in [group.name for group in user.groups.all()]:
                     return redirect('home_driver')
                 else:
-                    return redirect('home')  # Default redirect if not in any group
+                    return redirect('home_accounts')  # Default redirect if not in any group
 
             else:
                 messages.error(request, "Invalid username or password.")
@@ -92,12 +96,6 @@ def user_login(request):
         form = AuthenticationForm()
     
     return render(request, 'accounts/registration/login.html', {'form': form})
-
-
-
-
-
-
 
 
 @login_required
@@ -111,6 +109,7 @@ def profile_update(request):
                 return redirect('profile_update')
         else:
             form = UserFarmerUpdateForm(instance=request.user)
+        return render(request, 'profile_farmer.html', {'form': form})  # ปรับเปลี่ยนเพื่อใช้ profile_farmer.html
     elif 'driver' in [group.name for group in request.user.groups.all()]:
         if request.method == 'POST':
             form = UserDriverUpdateForm(request.POST, instance=request.user)
@@ -119,9 +118,8 @@ def profile_update(request):
                 return redirect('profile_update')
         else:
             form = UserDriverUpdateForm(instance=request.user)
+        return render(request, 'profile_driver.html', {'form': form})  # ปรับเปลี่ยนเพื่อใช้ profile_driver.html
 
-    
-    return render(request,'accounts/profile_driver.html', {'form': form})
 
 
 

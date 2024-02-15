@@ -1,0 +1,40 @@
+<!-- home.html -->
+{% extends "components/base.html" %}
+{% load static %}
+
+
+{% block cart %}
+<!-- Middle Banner - Combine Harvester -->
+<div class="page-banner text-center py-4">
+    <h2 class="text-white">รถเกี่ยวนวดข้าว</h2>
+    <img src="https://raw.githubusercontent.com/veerachot113/image/main/LO_BANNER-NEW-WEB-CH-1900x567-px.webp"
+        alt="Combine Harvester Image" width="573" height="191" class="img-fluid mb-3">
+</div>
+
+<div class="container-fluid bg-light">
+    <div class="row">
+        <h3>Product Catalog</h3>
+    </div>
+</div>
+<div style="margin-top: 2%; margin-left: 6%">
+  <div class="row">
+    {% for vehicle in vehicles %}
+    <div class="card text-black border-light mb-5" style="max-width: 18rem; margin-right: 2%">
+      <div class="card-body">
+        <a href="#">
+          <img src="{{ vehicle.image.url }}" alt="" style="height: 200px; width: 200px">
+        <hr>
+        <h5 class="text-left">{{ vehicle.model }}</h5>
+        <h5 class="text-left">{{ vehicle.name }}</h5>
+        <p class="card-text">{{ vehicle.price }}</p>
+        <p class="card-text">{{ vehicle.province }}</p>
+        <p>Driver: {{ vehicle.driver.name }}</p>
+        <p><a href="{% url 'booking' vehicle.id %}" class="btn btn-dark btn-sm">จอง</a></p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% endblock %}

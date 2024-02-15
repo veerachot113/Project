@@ -142,7 +142,7 @@ STATIC_URL = "/static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGIN_REDIRECT_URL = 'home_farmer'
+# LOGIN_REDIRECT_URL = 'home_farmer'
 
 
 
@@ -154,9 +154,8 @@ LOGOUT_REDIRECT_URL = "home"
 #AUTH_USER_MODELS = None
 
 
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = 'media/'
 
 
 AUTHENTICATION_BACKENDS = [
