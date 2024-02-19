@@ -13,28 +13,35 @@
 
 <div class="container-fluid bg-light">
     <div class="row">
-        <h3>Product Catalog</h3>
+        <h3>รายการรถเกี่ยว</h3>
     </div>
 </div>
-<div style="margin-top: 2%; margin-left: 6%">
-  <div class="row">
+<div class="container my-5">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     {% for vehicle in vehicles %}
-    <div class="card text-black border-light mb-5" style="max-width: 18rem; margin-right: 2%">
-      <div class="card-body">
-        <a href="#">
-          <img src="{{ vehicle.image.url }}" alt="" style="height: 200px; width: 200px">
-        <hr>
-        <h5 class="text-left">{{ vehicle.model }}</h5>
-        <h5 class="text-left">{{ vehicle.name }}</h5>
-        <p class="card-text">{{ vehicle.price }}</p>
-        <p class="card-text">{{ vehicle.province }}</p>
-        <p>Driver: {{ vehicle.driver.name }}</p>
-        <p><a href="{% url 'booking' vehicle.id %}" class="btn btn-dark btn-sm">จอง</a></p>
+      <div class="col">
+        <div class="card shadow-sm">
+          <img src="{{ vehicle.image.url }}" class="card-img-top" alt="{{ vehicle.model }}">
+          <div class="card-body">
+            <h5 class="card-title">รุ่น:{{ vehicle.model }}</h5>
+            <p class="card-text">{{ vehicle.name }}</p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">ราคา: {{ vehicle.price }}ต่อไร่</li>
+              <li class="list-group-item">จังหวัด: {{ vehicle.province }}</li>
+              <li class="list-group-item">คนขับ: {{ vehicle.driver.name }}</li>
+            </ul>
+            <a href="{% url 'booking' vehicle.id %}" class="btn btn-primary">จอง</a>
+<a href="calendar.html" class="btn btn-secondary">ตารางงาน</a>
+<a href="#" class="btn btn-info">ข้อมูลรถเกี่ยวนวดข้าว</a>
+<a href="#" class="btn btn-warning">ข้อมูลคนขับ</a>
+
+          </div>
+        </div>
       </div>
-    </div>
     {% endfor %}
   </div>
 </div>
+
 
 
 {% endblock %}

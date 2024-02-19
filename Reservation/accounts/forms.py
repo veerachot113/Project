@@ -20,7 +20,7 @@ class UserFarmerUpdateForm(UserChangeForm):
 
     class Meta:
         model = UserFarmer
-        fields = ['username', 'email', 'name', 'address', 'phone']
+        fields = ['email', 'name', 'address', 'phone']
 
 class UserDriverRegistrationForm(UserCreationForm):
     name = forms.CharField(max_length=100, required=True, label='ชื่อ-สกุล')  # เพิ่มชื่อ-สกุล
@@ -38,4 +38,4 @@ class UserDriverUpdateForm(UserChangeForm):
 
     class Meta:
         model = UserDriver
-        fields = ['username', 'email', 'name', 'address', 'phone']
+        fields = ['email', 'name', 'address', 'phone']

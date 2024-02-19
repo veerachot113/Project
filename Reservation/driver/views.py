@@ -31,3 +31,17 @@
 
 
 
+# class CalendarEvents(View):
+#     def get(self, request, *args, **kwargs):
+#         events = []
+#         pets = Pet.objects.filter(appear=True)
+
+#         for pet in pets:
+#             events.append({
+#                 'id':pet.id,
+#                 'title': pet.name,
+#                 'start': pet.date_time.isoformat(),
+#                 'image': pet.profile.url if pet.profile else None,
+#             })
+
+#         return JsonResponse(events, safe=False)

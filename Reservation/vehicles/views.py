@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import VehicleForm
 from django.contrib.auth.decorators import login_required
 from .models import Vehicle
-
+from accounts.models import UserDriver
 
 @login_required
 def add_vehicle(request):
@@ -11,10 +11,12 @@ def add_vehicle(request):
         form = VehicleForm(request.POST, request.FILES)
         if form.is_valid():
             vehicle = form.save(commit=False)
-            vehicle.driver = request.user
+            # ดึงข้อมูลคนขับจากโมเดล UserDriver ที่เข้าสู่ระบบ
+            driver = UserDriver.objects.get(pk=request.user.id)
+            vehicle.driver = driver  # กำหนด driver เป็นอ็อบเจกต์ของคนขับที่เข้าสู่ระบบ
             vehicle.save()
             return redirect('home_driver')  # หรือไปยัง URL ที่คุณต้องการ
     else:
-        form = VehicleForm(initial={'driver': request.user})  # ส่งชื่อคนขับใน initial data
+        form = VehicleForm()
     return render(request, 'driver/add_vehicle.html', {'form': form})
 

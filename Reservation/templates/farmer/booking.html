@@ -27,45 +27,45 @@
                 {% csrf_token %}
                 <!-- ตำแหน่งของฟอร์ม -->
                 <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
+                    <label for="name" class="form-label">ชื่อ-สกุล:</label>
                     <input type="text" class="form-control" id="name" name="fullname">
                 </div>
                 <div class="mb-3">
-                    <label for="address" class="form-label">Address</label>
+                    <label for="address" class="form-label">ที่อยู่</label>
                     <textarea class="form-control" id="address" name="address" rows="3"></textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="quantity" class="form-label">Quantity (in acres)</label>
+                    <label for="quantity" class="form-label">จำนวนไร่</label>
                     <input type="number" class="form-control" id="quantity" name="quantity">
                 </div>
                 <div class="mb-3">
-                    <label for="phone" class="form-label">Phone</label>
+                    <label for="phone" class="form-label">เบอร์ติดต่อ</label>
                     <input type="text" class="form-control" id="phone" name="phone">
                 </div>
                 <div class="mb-3">
-                    <label for="details" class="form-label">Details</label>
+                    <label for="details" class="form-label">รายละเอียด</label>
                     <textarea class="form-control" id="details" name="details" rows="5"></textarea>
                 </div>
                 <!-- ปุ่มส่ง -->
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">ส่ง</button>
             </form>
         </div>
         <div class="col-md-6 order-md-1">
             <img src="{{ vehicles.image.url }}" alt="Booking Image" class="booking-image">
             <div class="mb-3">
-                <label for="name" class="form-label">Name {{ vehicles.driver }}</label>
+                <label for="name" class="form-label">ชื่อคนขับ: {{ vehicles.driver }}</label>
             </div>
             <div class="mb-3">
-                <label for="address" class="form-label">Address {{ vehicles.model }}</label>
+                <label for="address" class="form-label">ที่อยู่: {{ vehicles.model }}</label>
             </div>
             <div class="mb-3">
-                <label for="quantity" class="form-label">Quantity (in acres) {{ vehicles.type }}</label>
+                <label for="quantity" class="form-label">ประเภทรถ: {{ vehicles.type }}</label>
             </div>
             <div class="mb-3">
-                <label for="phone" class="form-label">Pprice {{ vehicles.price }}</label>
+                <label for="phone" class="form-label">ราคาต่อไร่ {{ vehicles.price }}</label>
             </div>
             <div class="mb-3">
-                <label for="phone" class="form-label">province {{ vehicles.province}}</label>
+                <label for="phone" class="form-label">จังหวัด: {{ vehicles.province}}</label>
             </div>
             
         </div>

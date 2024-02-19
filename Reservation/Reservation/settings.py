@@ -28,6 +28,8 @@ SECRET_KEY = "django-insecure-h_*iwklwm#g2!lzh(d5sp1zafyq8f(j5y^i@i)l5wz5+&4*+q2
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://6d96-14-207-179-4.ngrok-free.app','http://127.0.0.1:8000']
+
 
 # MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 # Application definition
